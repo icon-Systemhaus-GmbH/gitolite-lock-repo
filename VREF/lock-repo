@@ -22,8 +22,9 @@ die "not meant to be run manually" unless $ARGV[6];
 
 my %lock = get_lock(LOCK_FILE);
 
-if (    defined(%lock)
-    and defined( $lock{USER} )
+# (%lock) returns true if the hash has members
+if (    (%lock)
+    and exists( $lock{USER} )
     and ( $lock{USER} ne $ENV{GL_USER} ) ) {
     my $time = -1;
 
